@@ -48,7 +48,7 @@ bne $r2, $r3, 0xFFFA //first for loop branches to line 42
  //shift logical right 40 to go back to original address
 addiu $r5, $r5, 0x1 //increment second for loop by one 
 bne $r6, $r5, 0xFFF7 // increment to reset inner loop counter 
-
+b 0x0005 // program completed successfully branch past update
  // Update:
 sw $a1, 0($r4)
 sw $a0, 4(4r4)
