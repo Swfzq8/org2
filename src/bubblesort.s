@@ -1,4 +1,9 @@
 lui $r0, 0x1001
-addiu $r1, $zero, 0xA
-sw $r1, 0x0($r0)
-lw $r2, 0x0($r0)
+addiu $r1, $zero, 0x5
+sw $r1, 0x4($r0)
+addiu $r1, $zero, 0x3
+sw $r1, 0x8($r0)
+addiu $r1, $zero, 0x6
+sw $r1, 0xC($r0)
+addiu $r1, $zero, 0x8
+sw $r1, 0x10($r0)
