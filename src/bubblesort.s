@@ -41,11 +41,11 @@ addiu $r5, $zer0, 0x0 // starting counter outer loop
 li $r3, 0x0 //resets the inner loop counter (happens after the 10 runs of inner loop and branched to by outer loop
 lw $a0, 0($r4) //loads  value a[i]
 lw $a1, 4($r4) // loads  value a[i+1]
-sll $r4, 2 // shift in memory by 4 to increment to next element 
+lw $r4, 4($r4) // shift in memory by 4 to increment to next element 
 bge $a0, $a1,0x0009 //to update if a[i+1] is less than a[i]
 addiu $r3, $r3, 0x1 // adding one to inner loop counter 
 bne $r2, $r3, 0xFFFA //first for loop branches to line 42 
- //shift logical right 40 to go back to original address
+lw $r4, -40($r4) //shift logical right 40 to go back to original address
 addiu $r5, $r5, 0x1 //increment second for loop by one 
 bne $r6, $r5, 0xFFF7 // increment to reset inner loop counter 
 b 0x0005 // program completed successfully branch past update
