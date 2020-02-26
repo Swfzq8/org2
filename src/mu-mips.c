@@ -687,6 +687,29 @@ void doWork(){
             writeInstruction(special);
 
         }
+		 // addu
+        
+        
+          if(!strncmp(word, "addu", 10)){
+            // ADD rd, rs, rt 
+            int special = 0b000000;
+            int adduOp = 0b100001;
+            if(fscanf(fp, "%s", word) == EOF) break;
+            int rd = parseArg(word,0); 
+            if(fscanf(fp, "%s", word) == EOF) break;
+            int rs = parseArg(word,0);  
+            if(fscanf(fp, "%s", word) == EOF) break;
+            int rt = parseArg(word,0);  
+
+            special = (special << 5) | rs;
+            special = (special << 5) | rt;
+            special = (special << 5) | rd;
+            special = (special << 5) | 0b00000;
+            special = (special << 6) | adduOp;
+            printf("%x", special); // write to file ...
+            writeInstruction(special);
+
+        }
         
     }
     fclose(fp);
