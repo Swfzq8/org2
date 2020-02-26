@@ -591,9 +591,7 @@ void doWork(){
         
         // sub
           if(!strncmp(word, "sub", 10)){
-            
-                printf("sub");
-
+            printf("sub");
             // sub rd, rs, rt 
             int special = 0b000000;
             int subOp = 0b100010;
@@ -622,7 +620,7 @@ void doWork(){
                 
         // bgtz  -- check 
         if(!strncmp(word, "bgtz", 10)){
-                printf("bgtz");
+            printf("bgtz");
 
             // beq rs, rt, offset 
             int bgtz = 0b000111;
@@ -640,6 +638,27 @@ void doWork(){
 
         }
 
+        // bne  -- check 
+        if(!strncmp(word, "bne", 10)){
+            printf("bne");
+
+            // beq rs, rt, offset 
+            int bne = 0b000101;
+            if(fscanf(fp, "%s", word) == EOF) break;
+            int rs = parseArg(word,0); 
+            if(fscanf(fp, "%s", word) == EOF) break;
+            int rt = parseArg(word,0); 
+			if(fscanf(fp, "%s", word) == EOF) break;
+            int off = parseArg(word,0); // offset 
+            bne = (bne << 5) | rs;
+            bne = (bne << 5) | rt;
+            bne = (bne << 16) | off;
+
+            printf("%x", bne); // write to file ...
+
+             writeInstruction(bne);
+
+        }
         
         //sw  AC650000 for sw $r5, 0x0($r3)
         if(!strncmp(word, "sw", 10)){
