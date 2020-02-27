@@ -31,7 +31,7 @@ lw $r4, 0x4($r4)
 addiu $r10, $zero, 0x0
 addiu $r11, $zero, 0x1
 sub $r7, $r7, $r8
-bgtz $r7, 0x0009 
+bgtz $r7, 0x0007
 addiu $r3, $r3, 0x1 
 bne $r2, $r3, 0xFFF8 
 lw $r4, $r1
