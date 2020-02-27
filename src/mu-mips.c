@@ -486,12 +486,12 @@ void writeInstruction(int op){
 	fclose(instFile);
 }
 
-void doWork(){
+void doWork(char * name){
 
-    fclose(fopen("instructions.in", "w")); // clear file 
+    fclose(fopen(name, "w")); // clear file 
     FILE *fp;
     char *word = (char*)malloc(40);
-    fp = fopen("bubblesort.s","r"); //read only
+    fp = fopen("inst.s","r"); //read only
     if(fp == NULL){
         return;
     }
@@ -513,7 +513,6 @@ void doWork(){
             addiuOp = (addiuOp << 5) | rt;
             addiuOp = (addiuOp << 16) | imm;
             printf("%x", addiuOp); // write to file ... 
-
             writeInstruction(addiuOp);
 
         }
@@ -533,8 +532,7 @@ void doWork(){
 
 
             printf("%x", addiuOp); // write to file ...
-
-             writeInstruction(addiuOp);
+			writeInstruction(addiuOp);
 
         }
         
@@ -557,8 +555,7 @@ void doWork(){
             lw = (lw << 5) | rt;
             lw = (lw << 16) | off;
             printf("%x\n",lw);
-
-          writeInstruction(lw);
+			writeInstruction(lw);
 
         }
         
@@ -581,8 +578,7 @@ void doWork(){
 
 
             printf("%x", regimm); // write to file ...
-
-           writeInstruction(regimm);
+			writeInstruction(regimm);
 
         }
         
@@ -610,8 +606,7 @@ void doWork(){
 
 
             printf("%x", special); // write to file ...
-
-         writeInstruction(special);
+			writeInstruction(special);
 
         }
         
@@ -633,8 +628,7 @@ void doWork(){
             bgtz = (bgtz << 16) | off;
 
             printf("%x", bgtz); // write to file ...
-
-             writeInstruction(bgtz);
+            writeInstruction(bgtz);
 
         }
 
@@ -642,7 +636,7 @@ void doWork(){
         if(!strncmp(word, "bne", 10)){
             printf("bne");
 
-            // beq rs, rt, offset 
+            // bne rs, rt, offset 
             int bne = 0b000101;
             if(fscanf(fp, "%s", word) == EOF) break;
             int rs = parseArg(word,0); 
@@ -653,11 +647,8 @@ void doWork(){
             bne = (bne << 5) | rs;
             bne = (bne << 5) | rt;
             bne = (bne << 16) | off;
-
             printf("%x", bne); // write to file ...
-
-             writeInstruction(bne);
-
+            writeInstruction(bne);
         }
         
         //sw  AC650000 for sw $r5, 0x0($r3)
@@ -676,8 +667,7 @@ void doWork(){
             sw = (sw << 5) | rt;
             sw = (sw << 16) | off;
             printf("%x",sw);
-
-          writeInstruction(sw);
+            writeInstruction(sw);
 
         }
 
@@ -702,7 +692,6 @@ void doWork(){
             special = (special << 5) | 0b00000;
             special = (special << 6) | addOp;
             printf("%x", special); // write to file ...
-
             writeInstruction(special);
 
         }
@@ -727,7 +716,6 @@ void doWork(){
             special = (special << 6) | adduOp;
             printf("%x", special); // write to file ...
             writeInstruction(special);
-
         }
         
     }
@@ -1253,12 +1241,12 @@ int main(int argc, char *argv[]) {
 	printf("Welcome to MU-MIPS SIM...\n");
 	printf("**************************\n\n");
 
-	doWork();
 	
 	if (argc < 2) {
 		printf("Error: You should provide input file.\nUsage: %s <input program> \n\n",  argv[0]);
 		exit(1);
 	}
+	doWork(argv[2]);
 
 	strcpy(prog_file, argv[1]);
 	initialize();
