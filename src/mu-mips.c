@@ -443,6 +443,9 @@ int parseArg(char * arg, int off){
     
     //  printf("stuff-%s  %d-\n", arg, off);
 
+	if(off == 2){
+		return fromBinary(arg);
+	}
     if(strchr(arg, '(') != NULL){
         const char paraOpen[2] = "(";
         if(off == 1){
@@ -565,13 +568,13 @@ void doWork(char * name){
         if(!strncmp(word, "bge", 10)){
              printf("bge");
 
-            // beq rs, rt, offset 
+            // bgez rs,offset 
             int regimm = 0b000001;
             if(fscanf(fp, "%s", word) == EOF) break;
             int rs = parseArg(word,0); 
             int bgez = 0b00001;
             if(fscanf(fp, "%s", word) == EOF) break;
-            int off = parseArg(word,0); // offset 
+            int off = parseArg(word,2); // offset 
             regimm = (regimm << 5) | rs;
             regimm = (regimm << 5) | bgez;
             regimm = (regimm << 16) | off;
