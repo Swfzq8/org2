@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 lui $r4, 0x1001
 addiu $r0, $zero, 0x5
 sw $r0, 0x0($r4)
@@ -43,4 +41,3 @@ bne $r10, $r11, 0x0005
 sw $r7, 0x0($r4)
 sw $r8, 0x4($r4)
 bne $r10, $r11, 0xFFF8 
->>>>>>> 3ec83a82d23cd3b62972581516dd7cd26e17f550
