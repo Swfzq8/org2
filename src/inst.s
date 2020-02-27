@@ -31,7 +31,7 @@ addiu $r10, $zero, 0x0
 addiu $r11, $zero, 0x1
 bge $r7, $r8, 0x0009 
 addiu $r3, $r3, 0x1 
-bne $r2, $r3, 0xFFFA 
+bne $r2, $r3, 0xFFF9 
 lw $r4, 0xFFD8($r4)
 addiu $r5, $r5, 0x1 
 bne $r6, $r5, 0xFFF7 
