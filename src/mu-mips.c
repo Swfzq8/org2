@@ -488,7 +488,7 @@ void writeInstruction(int op){
 
 void doWork(char * name){
 
-    fclose(fopen("instructions.s", "w")); // clear file 
+    fclose(fopen("instructions.in", "w")); // clear file 
     FILE *fp;
     char *word = (char*)malloc(40);
     fp = fopen("inst.s","r"); //read only
