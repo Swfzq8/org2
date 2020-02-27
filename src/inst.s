@@ -31,12 +31,13 @@ lw $r8, 0x4($r4)
 lw $r4, 0x4($r4) 
 addiu $r10, $zero, 0x0
 addiu $r11, $zero, 0x1
-bge $r7, $r8, 0x0009 
+sub $r7, $r7, $r8
+bgtz $r7, 0x0009 
 addiu $r3, $r3, 0x1 
-bne $r2, $r3, 0xFFF9 
+bne $r2, $r3, 0xFFF8 
 lw $r4, 0xFFDC($r4)
 addiu $r5, $r5, 0x1 
-bne $r6, $r5, 0xFFF7 
+bne $r6, $r5, 0xFFF4 
 bne $r10, $r11, 0x0005 
 sw $r7, 0x0($r4)
 sw $r8, 0x4($r4)
